@@ -1,10 +1,11 @@
 import React from "react";
-import classes from "./BurgerIngredient.css";
+import classes from "./BurgerIngredient.module.css";
+
 import PropTypes from "prop-types";
 
 const burgerIngredient = props => {
   let ingredient = null;
-
+  console.log("TCL: classes", classes);
   // Use a switch statement to analyze the ingredits comming in
   switch (props.type) {
     case "bread-bottom":
@@ -12,23 +13,23 @@ const burgerIngredient = props => {
       break;
     case "bread-top":
       ingredient = (
-        <div classname={classes.BreakTop}>
+        <div className={classes.BreadTop}>
           <div className={classes.Seeds1}></div>
           <div className={classes.Seeds2}></div>
         </div>
       );
       break;
     case "meat":
-      ingredient = <div classname={classes.Meat}></div>;
+      ingredient = <div className={classes.Meat}></div>;
       break;
     case "cheese":
-      ingredient = <div classname={classes.Cheese}></div>;
+      ingredient = <div className={classes.Cheese}></div>;
       break;
     case "Salad":
-      ingredient = <div classname={classes.Salad}></div>;
+      ingredient = <div className={classes.Salad}></div>;
       break;
     case "bacon":
-      ingredient = <div classname={classes.Bacon}></div>;
+      ingredient = <div className={classes.Bacon}></div>;
       break;
     default:
       ingredient = null;
