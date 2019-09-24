@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const burgerIngredient = props => {
   let ingredient = null;
-  console.log("TCL: classes", classes);
+
   // Use a switch statement to analyze the ingredits comming in
   switch (props.type) {
     case "bread-bottom":
@@ -25,7 +25,7 @@ const burgerIngredient = props => {
     case "cheese":
       ingredient = <div className={classes.Cheese}></div>;
       break;
-    case "Salad":
+    case "salad":
       ingredient = <div className={classes.Salad}></div>;
       break;
     case "bacon":
