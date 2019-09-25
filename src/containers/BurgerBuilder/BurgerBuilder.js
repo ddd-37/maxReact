@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import Modal from "./../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSumary";
 
 const INGREDIENT_PRICES = {
   salad: 0.4,
@@ -62,7 +64,7 @@ class BurgerBuilder extends Component {
   };
 
   removeIngredientHandler = type => {
-    // Add 1 to our selected ingredient
+    // Remove 1 from our selected ingredient
     const oldCount = this.state.ingredients[type];
 
     // We need to handle negative numbers, meaning we do not allow them
@@ -114,6 +116,9 @@ class BurgerBuilder extends Component {
           disabled={disabledInfo}
           purchasable={this.state.purchasable}
         />
+        <Modal>
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
       </>
     );
   }
