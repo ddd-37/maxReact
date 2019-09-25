@@ -1,9 +1,9 @@
 import React from "react";
+
 import classes from "./Burger.module.css";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 
 const burger = props => {
-  // We need to transform the state object (ingredients) into an array of BurgerIngredient components
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
@@ -11,14 +11,12 @@ const burger = props => {
       });
     })
     .reduce((arr, el) => {
-      // We need to check to see if anything is actually in the array (flattten the array)
       return arr.concat(el);
     }, []);
 
   if (transformedIngredients.length === 0) {
-    transformedIngredients = <p>Please start adding ingredients</p>;
+    transformedIngredients = <p>Please start adding ingredients!</p>;
   }
-  console.log("TCL: transformedIngredients", transformedIngredients);
 
   return (
     <div className={classes.Burger}>
