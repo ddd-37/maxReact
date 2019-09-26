@@ -20,9 +20,11 @@ class BurgerBuilder extends Component {
       meat: 0
     },
     purchasable: false,
+    purchasing: false,
     totalPrice: 4
   };
 
+  // Runs on both addition and subtraction of items
   updatePurchaseState = updatedIngredients => {
     const sum = Object.keys(updatedIngredients)
       .map(igKey => {
@@ -33,6 +35,11 @@ class BurgerBuilder extends Component {
       }, 0);
 
     this.setState({ purchasable: sum > 0 });
+  };
+
+  // Runs when order now is clicked
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
   };
 
   //METHODS TO ADD AND REMOVE INGREDIENTS
@@ -96,6 +103,7 @@ class BurgerBuilder extends Component {
   };
 
   render() {
+    console.log("TCL: BurgerBuilder -> state", this.state);
     // We need to be able to disable buttons if the value of the ingredient is zero
     const disabledInfo = {
       ...this.state.ingredients // Copy our state object
@@ -104,6 +112,7 @@ class BurgerBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0; // If the key is equal to or less than zero set the new disabledInfo object key: value to false
     }
+
     return (
       <>
         <div>
@@ -115,8 +124,9 @@ class BurgerBuilder extends Component {
           removeIngredient={this.removeIngredientHandler}
           disabled={disabledInfo}
           purchasable={this.state.purchasable}
+          ordered={this.purchaseHandler}
         />
-        <Modal>
+        <Modal show={this.state.purchasing}>
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
       </>
