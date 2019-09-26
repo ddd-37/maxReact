@@ -102,6 +102,16 @@ class BurgerBuilder extends Component {
     this.updatePurchaseState(updatedIngredients);
   };
 
+  purchaseContinueHandler = () => {
+    console.log("purchaseContinueHandler clicked!");
+  };
+
+  closeModalHandler = () => {
+    this.setState({
+      purchasing: false
+    });
+  };
+
   render() {
     console.log("TCL: BurgerBuilder -> state", this.state);
     // We need to be able to disable buttons if the value of the ingredient is zero
@@ -126,8 +136,15 @@ class BurgerBuilder extends Component {
           purchasable={this.state.purchasable}
           ordered={this.purchaseHandler}
         />
-        <Modal show={this.state.purchasing}>
-          <OrderSummary ingredients={this.state.ingredients} />
+        <Modal
+          show={this.state.purchasing}
+          backdropClick={this.closeModalHandler}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            canceled={this.closeModalHandler}
+            continued={this.purchaseContinueHandler}
+          />
         </Modal>
       </>
     );
