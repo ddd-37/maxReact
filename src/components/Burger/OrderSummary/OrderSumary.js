@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "../../UI/Button/Button";
+import PropTypes from "prop-types";
 
 const orderSummary = props => {
+  console.log("TCL: orderSummary", props);
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
     return (
       <li key={igKey}>
@@ -27,6 +29,12 @@ const orderSummary = props => {
       </Button>
     </>
   );
+};
+
+orderSummary.propTypes = {
+  ingredients: PropTypes.object.isRequired,
+  canceled: PropTypes.func.isRequired,
+  continued: PropTypes.func.isRequired
 };
 
 export default orderSummary;

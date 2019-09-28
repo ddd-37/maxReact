@@ -113,7 +113,6 @@ class BurgerBuilder extends Component {
   };
 
   render() {
-    console.log("TCL: BurgerBuilder -> state", this.state);
     // We need to be able to disable buttons if the value of the ingredient is zero
     const disabledInfo = {
       ...this.state.ingredients // Copy our state object

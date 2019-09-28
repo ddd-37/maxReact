@@ -3,8 +3,10 @@ import Logo from "../../Layout/Logo/Logo";
 import NavigationItems from "../../Navigation/NavigationItems/NavigationItems";
 import classes from "./SideDrawer.module.css";
 import BackDrop from "../../UI/Backdrop/Backdrop";
+import PropTypes from "prop-types";
 
 const sideDrawer = props => {
+  console.log("TCL: sideDrawer", props);
   let attachedClasses = [classes.SideDrawer, classes.Close];
 
   if (props.open) {
@@ -24,6 +26,11 @@ const sideDrawer = props => {
       </div>
     </>
   );
+};
+
+sideDrawer.propTyps = {
+  closed: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired
 };
 
 export default sideDrawer;

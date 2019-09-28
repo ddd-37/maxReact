@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
+import PropTypes from "prop-types";
 
 class Layout extends Component {
   state = {
@@ -26,6 +27,7 @@ class Layout extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <>
         <Toolbar
@@ -41,5 +43,9 @@ class Layout extends Component {
     );
   }
 }
+
+Layout.propType = {
+  children: PropTypes.object
+};
 
 export default Layout;
