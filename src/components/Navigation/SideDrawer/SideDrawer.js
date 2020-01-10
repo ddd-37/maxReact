@@ -6,7 +6,6 @@ import BackDrop from "../../UI/Backdrop/Backdrop";
 import PropTypes from "prop-types";
 
 const sideDrawer = props => {
-  console.log("TCL: sideDrawer", props);
   let attachedClasses = [classes.SideDrawer, classes.Close];
 
   if (props.open) {

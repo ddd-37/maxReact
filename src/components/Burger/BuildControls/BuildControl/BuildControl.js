@@ -3,7 +3,7 @@ import classes from "./BuildControl.module.css";
 import PropTypes from "prop-types";
 
 const buildControl = props => {
-  console.log("TCL: props", props);
+  //console.log("TCL: props", props);
   return (
     <div className={classes.BuildControl}>
       <div className={classes.Label}>{props.label}</div>

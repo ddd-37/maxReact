@@ -20,7 +20,7 @@ const modal = props => (
 
 modal.propTypes = {
   backdropClick: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired
+  show: PropTypes.bool
 };
 
 export default modal;

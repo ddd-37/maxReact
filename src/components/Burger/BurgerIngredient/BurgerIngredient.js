@@ -4,7 +4,7 @@ import classes from "./BurgerIngredient.module.css";
 import PropTypes from "prop-types";
 
 const burgerIngredient = props => {
-  console.log("TCL: props", props);
+  //console.log("TCL: props", props);
   let ingredient = null;
 
   // Use a switch statement to analyze the ingredits comming in

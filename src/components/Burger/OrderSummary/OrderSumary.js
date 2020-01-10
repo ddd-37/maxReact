@@ -3,7 +3,7 @@ import Button from "../../UI/Button/Button";
 import PropTypes from "prop-types";
 
 const orderSummary = props => {
-  console.log("TCL: orderSummary", props);
+  //console.log("TCL: orderSummary", props);
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
     return (
       <li key={igKey}>

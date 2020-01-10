@@ -68,6 +68,7 @@ class BurgerBuilder extends Component {
     const priceAddition = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
+    //console.log("TCL: BurgerBuilder -> newPrice", newPrice);
 
     // Set the state
     this.setState({
