@@ -25,11 +25,9 @@ class BurgerBuilder extends Component {
 
   // Get ingredient data from the backend
   componentDidMount() {
-    axios
-      .get("https://burger-time-2454e.firebaseio.com/ingredients.json")
-      .then(response => {
-        this.setState({ ingredients: response.data });
-      });
+    axios.get("/ingredients.json").then(response => {
+      this.setState({ ingredients: response.data });
+    });
   }
 
   // Runs on both addition and subtraction of items
@@ -112,32 +110,6 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    // this.setState({ loading: true });
-
-    // const order = {
-    //   ingredients: this.state.ingredients,
-    //   price: this.state.totalPrice,
-    //   customer: {
-    //     name: "Devon Deason",
-    //     address: {
-    //       street: "Teststreet 1",
-    //       zipCode: "80206",
-    //       city: "Denver",
-    //       state: "CO"
-    //     },
-    //     email: "devon.deason@gmail.com"
-    //   },
-    //   deliveryMethod: "fastest"
-    // };
-
-    // axios
-    //   .post("/orders.json", order)
-    //   .then(response => {
-    //     this.setState({ loading: false, purchasing: false });
-    //   })
-    //   .catch(error => {
-    //     this.setState({ loading: false, purchasing: false });
-    //   });
     const queryParams = [];
     for (let i in this.state.ingredients) {
       queryParams.push(
@@ -146,6 +118,8 @@ class BurgerBuilder extends Component {
           encodeURIComponent(this.state.ingredients[i])
       );
     }
+
+    queryParams.push("price=" + this.state.totalPrice);
 
     const queryString = queryParams.join("&");
     console.log(
