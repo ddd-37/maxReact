@@ -9,12 +9,48 @@ import classes from "./ContactData.module.css";
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      postalCode: ""
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: { type: "text", placeholder: "Your Name" },
+        value: ""
+      },
+      street: {
+        elementType: "input",
+        elementConfig: { type: "text", placeholder: "Street name" },
+        value: ""
+      },
+      zipCode: {
+        elementType: "input",
+        elementConfig: { type: "text", placeholder: "Zip Code" },
+        value: ""
+      },
+      city: {
+        elementType: "input",
+        elementConfig: { type: "text", placeholder: "City" },
+        value: ""
+      },
+      state: {
+        elementType: "input",
+        elementConfig: { type: "text", placeholder: "State" },
+        value: ""
+      },
+      email: {
+        elementType: "email",
+        elementConfig: { type: "text", placeholder: "Your email" },
+        value: ""
+      },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" }
+          ]
+        }
+      }
     },
+
     loading: false
   };
 
@@ -25,16 +61,7 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
-      customer: {
-        name: "Devon Deason",
-        address: {
-          street: "Teststreet 1",
-          zipCode: "80206",
-          city: "Denver",
-          state: "CO"
-        },
-        email: "devon.deason@gmail.com"
-      },
+
       deliveryMethod: "fastest"
     };
 
@@ -49,33 +76,41 @@ class ContactData extends Component {
       });
   };
 
+  inputChangedHandler = (e, inputIdentifier) => {
+    console.log(e.target.value, inputIdentifier);
+
+    // Weneed to make some deep clones here so we're not mutating the state directly
+    const updatedOrderForm = { ...this.state.orderForm };
+    const updatedFormElement = { ...updatedOrderForm[inputIdentifier] };
+    updatedFormElement.value = e.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+
+    this.setState({
+      orderForm: updatedOrderForm
+    });
+  };
+
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
+
     let form = (
       <form>
-        <Input
-          inputtype="input"
-          type="text"
-          name="name"
-          placeholder="Your Name"
-        />
-        <Input
-          inputtype="input"
-          type="email"
-          name="email"
-          placeholder="Your Email"
-        />
-        <Input
-          inputtype="input"
-          type="text"
-          name="street"
-          placeholder="Street"
-        />
-        <Input
-          inputtype="input"
-          type="text"
-          name="postal"
-          placeholder="Postal Code"
-        />
+        {formElementsArray.map(formElement => (
+          <Input
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            key={formElement.id}
+            changed={e => this.inputChangedHandler(e, formElement.id)}
+          />
+        ))}
+
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER
         </Button>
